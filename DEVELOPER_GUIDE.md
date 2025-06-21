@@ -36,10 +36,19 @@ for-baby-chix/
 │   │   └── softer-love-203834.mp3
 │   ├── css/
 │   │   └── style.css
+│   ├── favicon/
+│   │   ├── apple-touch-icon.png
+│   │   ├── favicon-96x96.png
+│   │   ├── favicon.ico
+│   │   ├── favicon.svg
+│   │   ├── site.webmanifest
+│   │   ├── web-app-manifest-192x192.png
+│   │   └── web-app-manifest-512x512.png
 │   ├── js/
 │   │   ├── data.js
 │   │   └── main.js
 │   └── symbols/
+├── DEVELOPER_GUIDE.md
 ├── editor.html
 ├── index.html
 └── README.md
