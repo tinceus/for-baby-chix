@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>For Baby Chix</title>
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="assets/css/style.css" />
+    </head>
+    <body>
+        <!-- Cinematic Birthday Overlay -->
+        <div id="cinematic-overlay" class="hidden">
+            <div class="curtain" id="left-curtain"></div>
+            <div class="curtain" id="right-curtain"></div>
+            <div class="birthday-message">
+                <h2 class="happy-birthday-text">Happy Birthday</h2>
+                <p class="to-my-love-text">to my everything</p>
+            </div>
+        </div>
+
+        <!-- Main Header -->
+        <header class="main-header">
+            <div class="nav-links-group">
+                <nav class="main-nav">
+                    <a class="nav-link" onclick="showPage('page-home')"
+                        >The Letter</a
+                    >
+                    <a class="nav-link" onclick="showPage('page-reminders')"
+                        >366 Days of Love</a
+                    >
+                    <a class="nav-link" onclick="showPage('page-notebook')"
+                        >The Archer's Notebook</a
+                    >
+                </nav>
+            </div>
+            <div class="search-container">
+                <input
+                    type="search"
+                    id="search-input"
+                    placeholder="Search for a memory or poem..."
+                />
+                <div id="search-results-container"></div>
+            </div>
+        </header>
+
+        <!-- Calendar Navigation -->
+        <div id="calendar-nav" class="calendar-navigation">
+            <div class="calendar-controls">
+                <div>
+                    <button id="prev-year" class="calendar-nav-btn">
+                        « Year
+                    </button>
+                    <button id="prev-month" class="calendar-nav-btn">
+                        ‹ Month
+                    </button>
+                </div>
+                <div id="current-month">January 2024</div>
+                <div>
+                    <button id="next-month" class="calendar-nav-btn">
+                        Month ›
+                    </button>
+                    <button id="next-year" class="calendar-nav-btn">
+                        Year »
+                    </button>
+                </div>
+            </div>
+            <div class="month-grid">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+                <!-- Days will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="container">
+            <!-- Page 1: The Love Letter -->
+            <section id="page-home" class="page">
+                <h1 class="stagger-title">Baby Chix</h1>
+                <div class="letter-content">
+                    <p>My Dearest Baby Chix,</p>
+                    <p>
+                        There are years, and then there are the years that hold
+                        you. I remember the world before you in shades of grey;
+                        a restless, unmoored existence of glittering parties and
+                        conversations that faded as soon as they were spoken. I
+                        felt I would drift on forever, seeking, a little
+                        wistfully, for some irrecoverable game.
+                    </p>
+                    <p>And then you arrived.</p>
+                    <p>
+                        It was not a sudden clamor, but a quiet, seismic shift.
+                        If personality is an unbroken series of successful
+                        gestures, then yours was something else entirely—an
+                        extraordinary gift for hope, a romantic readiness such
+                        as I have never found in any other person. You smiled,
+                        and it was one of those rare smiles with a quality of
+                        eternal reassurance in it, a smile that concentrated on
+                        me with an irresistible prejudice in my favor.
+                    </p>
+                    <p>
+                        They say a life can be measured in moments. But with
+                        you, it is measured in entire eras. There was the era of
+                        whispered secrets on a Tuesday afternoon, the era of
+                        laughing in the car when that one song came on, the era
+                        of the look you gave me across a crowded room—a silent,
+                        sworn pact. These are the moments that hold a grotesque
+                        and fantastic beauty, more real than any tangible thing.
+                    </p>
+                    <p>
+                        So today, on your birthday, I want to give you not just
+                        my love, but my belief. Belief in your sad and lovely
+                        strength, in the charming discontented way you challenge
+                        the world, in the future that waits for you—a future I
+                        see as a green light at the end of a dock, an orgastic
+                        future that year by year recedes before us, but one we
+                        will run faster towards, stretching out our arms
+                        farther…
+                    </p>
+                    <p>
+                        And for me, that future is not an illusion. It's you. It
+                        has always been you.
+                    </p>
+                    <p>Happy Birthday, my darling. Forever yours.</p>
+                </div>
+            </section>
+
+            <!-- Page 2: 366 Days of Love -->
+            <section id="page-reminders" class="page">
+                <h1 class="page-title">366 Days of Love</h1>
+                <p class="page-subtitle">
+                    A daily reminder of my heart in 366 daily messages...
+                </p>
+                <p class="page-scroll-prompt">
+                    Scroll gently through our moments together ❤️
+                </p>
+
+                <!-- Today's Card Container -->
+                <div class="todays-card-container">
+                    <h2 class="section-header">A Special Note For You Today</h2>
+                    <div id="todays-card"></div>
+                    <hr class="section-divider" />
+                    <h2 class="section-header">The Full Collection</h2>
+                </div>
+
+                <div id="reminders-collection"></div>
+            </section>
+
+            <!-- Page 3: The Archer's Notebook -->
+            <section id="page-notebook" class="page">
+                <h1 class="page-title">The Archer's Notebook</h1>
+                <p class="page-subtitle">
+                    A personal journal of verses and moments, written by you,
+                    for you, my dear.
+                </p>
+                <div id="poems-list"></div>
+                <div class="poem-editor-controls">
+                    <button id="add-poem-button" class="cta-button">
+                        Add a New Poem
+                    </button>
+                </div>
+                <div id="poem-editor-modal" class="modal-overlay hidden">
+                    <div class="modal-content">
+                        <button class="close-button" id="close-editor-button">
+                            ×
+                        </button>
+                        <h3>The Editor</h3>
+                        <form id="poem-editor-form">
+                            <div class="form-group">
+                                <label for="poem-title">Title</label
+                                ><input type="text" id="poem-title" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="poem-date">Date Published</label
+                                ><input type="date" id="poem-date" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="poem-lines"
+                                    >Poem (one line per line)</label
+                                ><textarea
+                                    id="poem-lines"
+                                    rows="10"
+                                    required
+                                ></textarea>
+                            </div>
+                            <button type="submit" class="cta-button">
+                                Save to My Journal
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modals & UI Controls -->
+        <div id="reminder-modal" class="modal-overlay hidden">
+            <div class="modal-content" id="reminder-modal-content"></div>
+        </div>
+
+        <div class="ui-controls">
+            <button
+                id="theme-toggle"
+                aria-label="Toggle light and dark mode"
+            ></button>
+            <button
+                id="music-toggle"
+                aria-label="Toggle background music"
+            ></button>
+            <button
+                id="calendar-toggle"
+                aria-label="Toggle calendar view"
+                class="hidden"
+            ></button>
+        </div>
+
+        <audio id="background-audio" loop>
+            <source
+                src="assets/audio/softer-love-203834.mp3"
+                type="audio/mpeg"
+            />
+        </audio>
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <p>Created with love for my Baby Chix's birthday</p>
+            <p class="quote">
+                “I want to be soaked in the light of your soul.”
+            </p>
+            <p>Always Yours - Wifey</p>
+        </footer>
+
+        <!-- JavaScript -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"
+            defer
+        ></script>
+        <script src="assets/js/data.js" defer></script>
+        <script src="assets/js/main.js" defer></script>
+    </body>
+</html>
