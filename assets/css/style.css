@@ -465,7 +465,7 @@ a {
     padding: var(--spacing-md);
     border-bottom: 1px solid var(--color-border);
     position: fixed;
-    top: 60px;
+    top: 60px; /* Default for desktop, JS will override on toggle */
     left: 50%;
     transform: translateX(-50%) translateY(-120%);
     z-index: 90;
@@ -947,24 +947,20 @@ a {
 /*                     10. Responsive Fixes (Mobile Calendar)                 */
 /* -------------------------------------------------------------------------- */
 
-@media (max-width: 768px) and (max-height: 800px) {
+@media (max-width: 768px) {
     #calendar-nav {
-        /* Push calendar down to clear taller mobile header */
-        top: 95px;
-        /* Ensure calendar doesn't run off the bottom of the screen */
-        max-height: calc(100vh - 110px);
+        /* This media query ensures the calendar behaves like a flexible container
+           on mobile, allowing its internal grid to scroll if needed.
+           The exact top and max-height are now set dynamically by JavaScript
+           to ensure it always fits perfectly below the header. */
         display: flex;
         flex-direction: column;
     }
 
-    #calendar-nav.visible {
-        /* Override transform to ensure it still slides in correctly */
-        transform: translateX(-50%) translateY(0);
-    }
-
     .month-grid {
-        /* Make the grid itself scrollable if content overflows */
+        /* This makes the grid of days scrollable if the month is too long
+           for the screen, ensuring the top controls never get pushed out of view. */
         overflow-y: auto;
-        flex-grow: 1; /* Allow grid to fill available space */
+        flex-grow: 1;
     }
 }

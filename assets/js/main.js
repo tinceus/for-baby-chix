@@ -11,6 +11,7 @@
 // --- Wait for the entire page to be ready before running our script ---
 document.addEventListener("DOMContentLoaded", () => {
   // --- 1. Element Selectors: Getting references to all our HTML pieces ---
+  const mainHeader = document.querySelector(".main-header"); // ADDED: Selector for the main header
   const pages = document.querySelectorAll(".page");
   const navLinks = document.querySelectorAll(".nav-link");
   const themeToggleButton = document.getElementById("theme-toggle");
@@ -328,7 +329,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (todaysReminder) {
       const displayDate = dayjs(todaysReminder.date).format("MMMM D");
 
-      // MODIFIED to include a semantic badge element instead of relying on a pseudo-element
       todaysCardContainer.innerHTML = `
             <div class="todays-card">
                 <div class="card-badge">★ Today's Note ★</div>
@@ -581,10 +581,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================================================
-  // --- SECTION: Calendar Toggle (NEW) ---
+  // --- SECTION: Calendar Toggle (MODIFIED) ---
   // ==========================================================================
 
   function toggleCalendar() {
+    // If the calendar is about to be shown...
+    if (!calendarNav.classList.contains("visible")) {
+      // Get the exact, current height of the header
+      const headerHeight = mainHeader.offsetHeight;
+
+      // Dynamically set the calendar's top position to be just below the header
+      calendarNav.style.top = `${headerHeight}px`;
+
+      // Also dynamically set the max-height to prevent it from going off-screen
+      // The '20px' provides a small, comfortable buffer from the bottom edge
+      calendarNav.style.maxHeight = `calc(100vh - ${headerHeight}px - 20px)`;
+    }
+    // Toggle the visibility class to trigger the CSS animation
     calendarNav.classList.toggle("visible");
   }
 
