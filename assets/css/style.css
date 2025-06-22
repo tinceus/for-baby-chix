@@ -417,7 +417,6 @@ a {
     border: 3px solid var(--color-accent);
     box-shadow: 0 15px 40px rgba(218, 165, 32, 0.25);
     position: relative;
-    /* overflow: hidden; -- REMOVED */
     cursor: pointer;
     transition:
         transform 0.3s ease,
@@ -430,9 +429,6 @@ a {
     box-shadow: 0 20px 50px rgba(218, 165, 32, 0.35);
 }
 
-/* REMOVED .todays-card::before pseudo-element */
-
-/* ADDED new rule for semantic badge */
 .card-badge {
     display: inline-block;
     background: var(--color-background);
@@ -446,7 +442,6 @@ a {
 
 .todays-card h3 {
     font-size: 2rem;
-    /* margin-bottom: var(--spacing-md); -- Spacing now handled by badge */
     color: var(--color-primary);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -464,7 +459,6 @@ a {
     color: var(--color-primary);
 }
 
-/* Calendar Navigation -- UPDATED */
 #calendar-nav {
     background: var(--color-surface);
     padding: var(--spacing-md);
@@ -491,8 +485,6 @@ a {
     pointer-events: auto;
     transform: translateX(-50%) translateY(0);
 }
-
-/* REMOVED .page-reminders.active #calendar-nav rule */
 
 .calendar-controls {
     display: flex;
@@ -878,7 +870,6 @@ a {
 #theme-toggle::before,
 #music-toggle::before,
 #calendar-toggle::before {
-    /* ADDED calendar toggle to this rule */
     content: "";
     width: 24px;
     height: 24px;
@@ -899,7 +890,6 @@ a {
 #music-toggle:not(.playing)::before {
     mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>');
 }
-/* ADDED new rule for calendar toggle icon */
 #calendar-toggle::before {
     mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>');
 }
@@ -918,4 +908,980 @@ a {
     font-size: 1.1rem;
     margin: var(--spacing-sm) 0;
     color: var(--color-primary);
+}
+
+/* ADDED Styles for the "Secret Message" Footer Section */
+.footer-secret {
+    margin-top: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    opacity: 0.6;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.footer-secret:hover {
+    opacity: 1;
+}
+
+.footer-secret a {
+    color: var(--color-secondary); /* Sets the SVG color */
+    line-height: 1; /* Prevents extra space */
+    transition: transform var(--transition-speed) ease;
+}
+
+.footer-secret a:hover {
+    transform: scale(1.1);
+    color: var(--color-primary); /* Optional: brighten icon on hover */
+}
+
+.footer-secret-text {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--color-secondary);
+    margin-bottom: 0;
+} /*
+================================================================================
+  For Baby Chix :: style.css
+  Final Implementation: Advanced Styling & Animation
+  CTO: Final, production-ready CSS. All bugs & new features are styled.
+  Creative Director: Cinematic intro, scroll animations, and footer are designed.
+  Senior Engineer: Responsive Flexbox header, clean, commented, and performant.
+================================================================================
+*/
+
+/* -------------------------------------------------------------------------- */
+/*                                1. Theming & Root Styles                     */
+/* -------------------------------------------------------------------------- */
+
+:root {
+    --font-serif: "Playfair Display", serif;
+    --font-sans: "Inter", sans-serif;
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 4rem;
+    --border-radius: 8px;
+    --transition-speed: 0.3s;
+    --header-height: auto; /* Allow header height to be flexible */
+}
+
+[data-theme="dark"] {
+    --color-background: #121212;
+    --color-surface: #1e1e1e;
+    --color-primary: #ffffff;
+    --color-secondary: #a0a0a0;
+    --color-border: #333333;
+    --color-accent: #daa520;
+    --color-glow: rgba(218, 165, 32, 0.1);
+    --color-modal-overlay: rgba(0, 0, 0, 0.7);
+    --color-shadow: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] {
+    --color-background: #f5f5f5;
+    --color-surface: #ffffff;
+    --color-primary: #121212;
+    --color-secondary: #5c5c5c;
+    --color-border: #e0e0e0;
+    --color-accent: #b8860b;
+    --color-glow: rgba(184, 134, 11, 0.1);
+    --color-modal-overlay: rgba(0, 0, 0, 0.5);
+    --color-shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                2. Global Resets & Base Styles               */
+/* -------------------------------------------------------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background-color: var(--color-background);
+    color: var(--color-secondary);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition:
+        background-color var(--transition-speed) ease,
+        color var(--transition-speed) ease;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-serif);
+    color: var(--color-primary);
+    font-weight: 700;
+    line-height: 1.2;
+}
+p {
+    margin-bottom: var(--spacing-md);
+}
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                3. Header, Nav & Search (IMPROVED)          */
+/* -------------------------------------------------------------------------- */
+
+.main-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    background-color: color-mix(
+        in srgb,
+        var(--color-background) 80%,
+        transparent
+    );
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    transition:
+        background-color var(--transition-speed) ease,
+        border-color var(--transition-speed) ease;
+}
+
+.nav-links-group {
+    order: 1;
+}
+
+.search-container {
+    order: 2;
+    margin: 0 auto;
+    max-width: 350px;
+    position: relative;
+}
+
+@media (min-width: 820px) {
+    .main-header {
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+    }
+
+    .nav-links-group {
+        grid-column: 2;
+        order: 0;
+    }
+
+    .search-container {
+        grid-column: 3;
+        margin: 0;
+        justify-self: end;
+    }
+}
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+.nav-link {
+    position: relative;
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    transition: color var(--transition-speed) ease;
+}
+.nav-link:hover,
+.nav-link.active {
+    color: var(--color-primary);
+}
+.nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: var(--spacing-sm);
+    right: var(--spacing-sm);
+    bottom: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+}
+
+#search-input {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    transition: all var(--transition-speed) ease;
+}
+#search-input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-glow);
+    outline: none;
+}
+#search-results-container {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    max-height: 50vh;
+    overflow-y: auto;
+    z-index: 99;
+    box-shadow: 0 10px 20px var(--color-shadow);
+    display: none;
+}
+#search-results-container.visible {
+    display: block;
+}
+.search-result-item {
+    padding: var(--spacing-sm) var(--spacing-md);
+    cursor: pointer;
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color var(--transition-speed) ease;
+}
+.search-result-item:last-child {
+    border-bottom: none;
+}
+.search-result-item:hover {
+    background-color: color-mix(
+        in srgb,
+        var(--color-accent) 10%,
+        var(--color-surface)
+    );
+}
+.search-result-item h4 {
+    font-size: 1rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+}
+.search-result-item p {
+    font-size: 0.8rem;
+    color: var(--color-secondary);
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.search-result-item mark {
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+    border-radius: 2px;
+}
+.no-results {
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--color-secondary);
+    font-style: italic;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .main-nav {
+        gap: var(--spacing-xs);
+    }
+
+    .nav-link {
+        padding: var(--spacing-xs);
+        font-size: 0.85rem;
+    }
+
+    .page-title {
+        font-size: clamp(2rem, 7vw, 3rem);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                4. Page Structure & Transitions              */
+/* -------------------------------------------------------------------------- */
+
+.page {
+    display: none;
+}
+.page.active {
+    display: block;
+    animation: pageFadeIn 0.8s ease forwards;
+}
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.page-title {
+    text-align: center;
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    margin-bottom: var(--spacing-sm);
+}
+.page-subtitle {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto var(--spacing-sm) auto;
+    font-size: 1rem;
+}
+.page-scroll-prompt {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto var(--spacing-xxl) auto;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--color-secondary);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                5. Page: The Letter & Cinematic Overlay      */
+/* -------------------------------------------------------------------------- */
+
+#cinematic-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    pointer-events: none;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition:
+        visibility 0s linear 2s,
+        opacity 0.5s ease;
+}
+#cinematic-overlay:not(.hidden) {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+.curtain {
+    position: fixed;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-color: var(--color-background);
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+#left-curtain {
+    left: 0;
+}
+#right-curtain {
+    right: 0;
+}
+.birthday-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-primary);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease 0.5s;
+    z-index: 10;
+}
+.happy-birthday-text {
+    font-size: clamp(2rem, 10vw, 5rem);
+}
+.to-my-love-text {
+    font-size: clamp(1rem, 5vw, 2.5rem);
+    font-family: var(--font-sans);
+    font-style: italic;
+    color: var(--color-secondary);
+}
+#cinematic-overlay.reveal .curtain {
+    transform: translateX(-100%);
+    transition-delay: 0.3s;
+}
+#cinematic-overlay.reveal #right-curtain {
+    transform: translateX(100%);
+    transition-delay: 0.3s;
+}
+#cinematic-overlay.reveal .birthday-message {
+    opacity: 1;
+}
+#cinematic-overlay.hidden {
+    visibility: hidden;
+    transition: visibility 0s 2s;
+} /* Hide after animation */
+
+#page-home h1.stagger-title {
+    font-size: clamp(3.5rem, 12vw, 6rem);
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+}
+.letter-content {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                6. Page: 366 Days of Love                    */
+/* -------------------------------------------------------------------------- */
+
+.todays-card-container {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-xl) auto;
+    text-align: center;
+}
+
+.todays-card {
+    background: linear-gradient(
+        135deg,
+        var(--color-accent) 0%,
+        var(--color-glow) 100%
+    );
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xl);
+    margin: var(--spacing-lg) auto;
+    max-width: 600px;
+    border: 3px solid var(--color-accent);
+    box-shadow: 0 15px 40px rgba(218, 165, 32, 0.25);
+    position: relative;
+    cursor: pointer;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.todays-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 50px rgba(218, 165, 32, 0.35);
+}
+
+.card-badge {
+    display: inline-block;
+    background: var(--color-background);
+    color: var(--color-accent);
+    font-size: 0.9rem;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    margin-bottom: var(--spacing-lg);
+}
+
+.todays-card h3 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.todays-card .heart-message {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-lg);
+    font-style: italic;
+}
+
+.todays-card .wellbeing-ps {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--color-primary);
+}
+
+#calendar-nav {
+    background: var(--color-surface);
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-120%);
+    z-index: 90;
+    max-width: 900px;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    box-shadow: 0 4px 10px var(--color-shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        transform 0.4s ease,
+        opacity 0.4s ease;
+}
+
+#calendar-nav.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.calendar-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.calendar-nav-btn {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    color: var(--color-secondary);
+}
+
+.calendar-nav-btn:hover {
+    background: var(--color-accent);
+    color: var(--color-surface);
+}
+
+#current-month {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-md);
+    text-align: center;
+}
+
+.month-grid > div:not(.day) {
+    font-weight: bold;
+    padding: var(--spacing-sm) 0;
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+}
+
+.month-grid .day {
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+    transition: all 0.2s ease;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    font-size: 0.9rem;
+}
+
+.month-grid .day:hover {
+    background: var(--color-accent);
+    color: var(--color-surface);
+    transform: scale(1.1);
+}
+
+.month-grid .today {
+    background: var(--color-accent);
+    color: var(--color-surface);
+    font-weight: bold;
+    border: 2px solid var(--color-primary);
+}
+
+.month-grid .has-note {
+    position: relative;
+}
+
+.month-grid .has-note::after {
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    width: 6px;
+    height: 6px;
+    background: var(--color-accent);
+    border-radius: 50%;
+}
+
+.month-grid .empty {
+    background: transparent;
+    border: none;
+}
+
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: var(--color-border);
+    margin: var(--spacing-xxl) auto;
+    width: 50%;
+}
+.section-header {
+    text-align: center;
+    font-family: var(--font-serif);
+    color: var(--color-secondary);
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-xl);
+}
+.month-section {
+    margin-bottom: var(--spacing-xxl);
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.8s ease-out,
+        transform 0.8s ease-out;
+}
+.month-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.month-title {
+    font-size: 2.5rem;
+    border-bottom: 2px solid;
+    padding-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+.month-title .month-theme {
+    font-size: 1.25rem;
+    color: var(--color-secondary);
+    font-weight: 400;
+}
+.reminders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+.reminder-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition:
+        transform var(--transition-speed) ease,
+        box-shadow var(--transition-speed) ease,
+        border-color var(--transition-speed) ease;
+}
+.reminder-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px var(--color-glow);
+    border-color: var(--glow-color, var(--color-accent));
+}
+.reminder-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+}
+.reminder-card .heart-message {
+    flex-grow: 1;
+    margin-bottom: var(--spacing-md);
+}
+.reminder-card .wellbeing-ps {
+    font-size: 0.9rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--theme-color);
+}
+.today-card {
+    max-width: 600px;
+    margin: 0 auto var(--spacing-xl) auto;
+    border-width: 2px;
+    border-color: var(--color-accent);
+    box-shadow: 0 10px 30px var(--color-glow);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                7. Page: The Archer's Notebook               */
+/* -------------------------------------------------------------------------- */
+
+.poem-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    transition: box-shadow 0.3s ease;
+}
+.poem-card.highlight {
+    box-shadow: 0 0 15px var(--color-accent);
+}
+.poem-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-sm);
+}
+.poem-card h2 {
+    font-size: 2rem;
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-xs);
+}
+.poem-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+.edit-poem,
+.delete-poem {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.edit-poem {
+    color: var(--color-accent);
+}
+.delete-poem {
+    color: #e74c3c;
+}
+.edit-poem:hover,
+.delete-poem:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.poem-card .date-published {
+    font-size: 0.8rem;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-md);
+}
+.poem-card .poem-lines p {
+    margin-bottom: var(--spacing-xs);
+    white-space: pre-line;
+}
+.poem-editor-controls {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+}
+.cta-button {
+    font-family: var(--font-sans);
+    background-color: var(--color-accent);
+    color: var(--color-background);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+.cta-button:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                8. Modals (Reminder & Editor)                */
+/* -------------------------------------------------------------------------- */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-modal-overlay);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: var(--spacing-md);
+    opacity: 0;
+    transition: opacity var(--transition-speed) ease;
+    pointer-events: none;
+}
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-content {
+    background-color: var(--color-surface);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius);
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.95);
+    transition: transform var(--transition-speed) ease;
+}
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+.close-button {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-md);
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--color-secondary);
+    cursor: pointer;
+    line-height: 1;
+}
+#reminder-modal-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-md);
+}
+#reminder-modal-content .heart-message {
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.1rem;
+}
+#reminder-modal-content .wellbeing-ps {
+    font-style: italic;
+}
+#poem-editor-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-group label {
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.9rem;
+}
+.form-group input,
+.form-group textarea {
+    background-color: var(--color-background);
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+}
+.form-group textarea {
+    resize: vertical;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                9. UI Controls & Footer                      */
+/* -------------------------------------------------------------------------- */
+
+.ui-controls {
+    position: fixed;
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+    display: flex;
+    gap: var(--spacing-sm);
+    z-index: 500;
+}
+.ui-controls button {
+    width: 44px;
+    height: 44px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-secondary);
+    transition: all var(--transition-speed) ease;
+}
+.ui-controls button.hidden {
+    display: none;
+}
+.ui-controls button:hover {
+    color: var(--color-primary);
+    border-color: var(--color-accent);
+    transform: scale(1.1);
+}
+#theme-toggle::before,
+#music-toggle::before,
+#calendar-toggle::before {
+    content: "";
+    width: 24px;
+    height: 24px;
+    display: block;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    background-color: currentColor;
+}
+[data-theme="dark"] #theme-toggle::before {
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>');
+}
+[data-theme="light"] #theme-toggle::before {
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>');
+}
+#music-toggle.playing::before {
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>');
+}
+#music-toggle:not(.playing)::before {
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>');
+}
+#calendar-toggle::before {
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>');
+}
+
+.main-footer {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    margin-top: var(--spacing-xxl);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+}
+.main-footer .quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    margin: var(--spacing-sm) 0;
+    color: var(--color-primary);
+}
+
+/* ADDED Styles for the "Secret Message" Footer Section */
+.footer-secret {
+    margin-top: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    opacity: 0.6;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.footer-secret:hover {
+    opacity: 1;
+}
+
+.footer-secret a {
+    color: var(--color-secondary); /* Sets the SVG color */
+    line-height: 1; /* Prevents extra space */
+    transition: transform var(--transition-speed) ease;
+}
+
+.footer-secret a:hover {
+    transform: scale(1.1);
+    color: var(--color-primary); /* Optional: brighten icon on hover */
+}
+
+.footer-secret-text {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--color-secondary);
+    margin-bottom: 0;
 }
