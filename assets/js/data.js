@@ -1780,7 +1780,7 @@ const remindersData = [
     month: "June",
     theme: "The Silver Pepper of Stars",
     heart_message:
-      "It may be the coldest time of the year, but I believe my heart is kept safe somewhere, cradled in the most genuine warmth I've ever known. Those gentlest of flames inspire and burn me with fiery passion, stirring within me a hopeful delight - all fueled and carried by the kindest hands I've ever trusted. A fireplace kind of warmth under dark frozen skies",
+      "It may be the coldest time of the year, but I believe my heart is kept safe somewhere, cradled in the most genuine warmth I've ever known. Those gentlest of flames inspire and burn me with fiery passion, stirring within me a hopeful delight - all fueled and carried by the kindest hands I've ever trusted. A fireplace kind of warmth under dark frozen skies.",
     wellbeing_ps:
       "P.S. Don't compare your journey to someone else's. Your path is your own, and it's perfect for you.",
   },
