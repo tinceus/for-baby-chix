@@ -55,4 +55,4 @@ for-baby-chix/
     *   **Interactive Modals:** For viewing reminders and editing poems.
     *   **Cinematic Intro:** An animated "curtain reveal" birthday message.
     *   **Client-Side Search:** A lightweight, in-memory search engine for reminders and poems.
-    *   **Personalized Footer:** A final, heartfelt closing signature.Understood. Here is the complete `DEVELOPER_GUIDE.md` file, which contains the original technical project specifications
+    *   **Personalized Footer:** A final, heartfelt closing signature.
